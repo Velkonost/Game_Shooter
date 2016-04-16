@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<style type="text/css">
+	#back{
+		background:url('pole.jpg');
+		width: 500px;
+		height: 500px;
+		}
+	#enemy1, #txt{
+		position: absolute;
+		display: inline-block;
+	}
+	#enemy_1{
+		padding-left: 400px;
+	}
+	#enemy_3{
+		padding-top: 100px;
+		padding-left: 400px;
+	}
+	#enemy_7{
+		padding-left: 400px;
+		padding-top: 400px;
+	}
+	#enemy_8{
+		padding-left: 250px;
+	}
+	/* #enemy_9{
+	 }*/
+ 	.hidden{
+		display:none;
+ 	}
+</style>
+</head>
+<body id="body" onclick="change_way()">
+
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+		for(var i = 1; i <= 14; i++){
+			var id = "enemy_"+i;
+			var enemy = document.getElementById(id);
+			enemy.setAttribute('class', 'hidden');
+		}
+
+});
+
+var check = true;
+var i = 1;
+var num = 0;
+var puck = true;
+var play = true;
+var score = 0;
+function clock(){
+	var idt = document.getElementById('timer'); 
+	idt.innerHTML = parseInt(idt.innerHTML) + 0.02; 
+	// Текст который движется 
+	var txt = document.getElementById('txt'); 
+	// Размер квадрата 
+	var ids = document.getElementById('id_size'); 
+	var size = parseInt(ids.innerHTML); 
+	// Координаты 
+	var idx = document.getElementById('id_x'); 
+	var x = parseInt(idx.innerHTML); 
+	var idy = document.getElementById('id_y'); 
+	var y = parseInt(idy.innerHTML); 
+		if(y <= 0 && x < size){
+			idx.innerHTML = x + 1; 
+			txt.style.paddingLeft = x; 
+			x += 1;
+		}
+		else if(x >= 400 && y < size){
+			idy.innerHTML = y + 1; 
+			txt.style.paddingTop = y; 
+			y += 1;
+		}
+		else if(y >= 400 && x > 0){
+			idx.innerHTML = x - 1; 
+			txt.style.paddingLeft = x; 
+			x -= 1;	
+		}
+		else if(x <= 0 && y > 0){
+			idy.innerHTML = y - 1; 
+			txt.style.paddingTop = y; 
+			y -= 1;
+		}
+}
+function unclock(){
+	var idt = document.getElementById('timer');
+	idt.innerHTML = parseInt(idt.innerHTML) + 0.02; 
+	// Текст который движется 
+	var txt = document.getElementById('txt'); 
+	// Размер квадрата 
+	var ids = document.getElementById('id_size'); 
+	var size = parseInt(ids.innerHTML); 
+	// Координаты 
+	var idx = document.getElementById('id_x'); 
+	var x = parseInt(idx.innerHTML); 
+	var idy = document.getElementById('id_y'); 
+	var y = parseInt(idy.innerHTML); 
+
+	// Достигнут ли правый нижний угол 
+	if(y <= 0 && x > 0){
+		idx.innerHTML = x - 1; 
+		txt.style.paddingLeft = x; 
+		x -= 1;
+	}
+	else if(x >= 400 && y > 0){
+		idy.innerHTML = y - 1; 
+		txt.style.paddingTop = y; 
+		y -= 1;
+	}
+	else if(y >= 400 && x < size){
+		idx.innerHTML = x + 1; 
+		txt.style.paddingLeft = x; 
+		x += 1;	
+	}
+	else if(x <= 0 && y < size){
+		idy.innerHTML = y + 1; 
+		txt.style.paddingTop = y; 
+		y += 1;
+	}	
+}
+function change_way(checker){
+	var idx = document.getElementById('id_x'); 
+	var idy = document.getElementById('id_y'); 
+	var x = parseInt(idx.innerHTML); 
+	var y = parseInt(idy.innerHTML); 
+	if((x >= enemies[num][0] && x <= enemies[num][1] && y >= enemies[num][2] && y <= enemies[num][3]) || play){
+
+		play = false;
+		var result = document.getElementById('score');
+		result.innerHTML = score;
+		score ++;
+		var id = setInterval(function(){ 
+			if(puck){
+				unclock();
+			}else{
+				clock();
+			}
+		}, 10);
+		puck = !puck;
+	}
+	else{
+		console.log('game over!');
+	}
+	num ++;
+	var id = "enemy_"+num;
+	var enemy = document.getElementById(id);
+	enemy.setAttribute('class', '');
+	if(num > 1){
+		var id_prev = "enemy_"+(num-1);
+		var enemy_prev = document.getElementById(id_prev);
+		enemy_prev.setAttribute('class', 'hidden');
+	}
+}
+
+var enemies = { 
+	// min_x, max_x, min_y, max_y
+	0: [0,0,0,0],
+	1: [310, 400, 0, 70],
+	2: [0, 90, 0, 70],
+	3: [310, 400, 90, 180],
+	4: [0, 100, 0, 80],
+	5: [0, 100, 0, 80],
+	6: [0, 100, 320, 400],
+	7: [310, 400, 320, 400],
+	8: [230, 360, 0, 80]
+	// 9: [0, 100, ]
+	// 3:
+	// 4:
+	// 5:
+	// 6:
+	// 7:
+	// 8:
+	// 9:
+	// 10:
+	// 11:
+	// 12:
+	// 13:
+	// 14:
+}
+
+</script> 
+<div>
+	size = <span id='id_size'>400</span>, 
+	 x = <span id='id_x'>0</span>, 
+	 y = <span id='id_y'>0</span>, 
+	 timer = <span id='timer'>0</span>
+	 Score: <span id="score">0</span>
+<div id="wrapper">	
+ 	<div id="back" style="margin-left: 100px;">
+		<div> 
+			<img src="player.png" id="txt" style="width: 100px; height: 100px;"/>
+		</div>
+		<img src="boy.png" id="enemy_1" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="boy.png" id="enemy_2" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_3" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="boy.png" id="enemy_4" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_5" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_6" style="width: 90px; height: 70px; margin-top: 400px;"/>
+		<img src="boy.png" id="enemy_7" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="boy.png" id="enemy_8" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_9" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="boy.png" id="enemy_10" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_11" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_12" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="boy.png" id="enemy_13" style="width: 90px; height: 70px; margin-bottom: 300px" />
+		<img src="girl.png" id="enemy_14" style="width: 90px; height: 70px; margin-bottom: 300px" />
+
+	</div>
+</div>
+</body>
+</html>
