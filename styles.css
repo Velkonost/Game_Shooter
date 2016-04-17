@@ -1,8 +1,12 @@
 h1{
-	margin-left: 43%;
+	margin-left: 620px;
+	display: inline-block;
 }
 h2{
-	margin-left: 47%;
+	margin-left: 45%;
+}
+h3{
+	margin-top: 50px;
 }
 #mucic{
 	display:none;
@@ -13,64 +17,50 @@ h2{
 	text-align:right;
 }
 #start{
-	margin-left: 210px;
+	margin-left: 170px;
+	margin-top: 50px;
 	width: 400px;
 	height: 200px;
 	float:left;
 }
 #intro{
 	float: left;
-	margin-left: 200px;
+	margin-left: 0px;
+	width: 400px;
 }
 #rule{
 	float: left;
+	width: 600px;
+	/* display: inline-block; */
 	margin-left: 200px;
 }
+#chooser{
+	display: inline-block;
+	float: right;
+	margin-top: -500px;
+	margin-right: 250px;
+	text-align: left;
+	/* position: absolute; */
+}
 .back{
-	background:url('pole.jpg');
+	background:url('Pictures/pole.jpg');
 	width: 500px;
 	height: 500px;
 }
 .over{
-	background:url('game_over.jpg');
+	background:url('Pictures/game_over.jpg');
 	width: 430px;
 	height: 500px;
 }
 .win{
-	background:url('win.gif');
+	background:url('Pictures/win.gif');
 	width: 500px;
 	height: 500px;
 }
 #txt{
 	position: absolute;
 	display: inline-block;
-} 
-#enemy_1{
-	padding-left: 400px;
 }
-#enemy_3{
-	padding-top: 100px;
-	padding-left: 400px;
-}
-#enemy_7{
-	padding-left: 400px;
-	padding-top: 400px;
-}
-#enemy_8{
-	padding-left: 250px;
-}
-#enemy_9{
-	padding-top: 400px;
-	padding-left: 200px;
-}
-#enemy_10{
-	padding-bottom: 400px;
-	position: absolute;
-}
-/* #enemy_11{
-	padding-top: 190px;
-	padding-left: 175px;
-} */
 .hidden{
 	display:none;
 }

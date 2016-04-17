@@ -2,14 +2,16 @@
 	<head>
 		<title>Game for Ludum</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
+		<link href="bootstrap.min.css" rel="stylesheet" title="fu">
 		<script src="https://code.jquery.com/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="Set_of_enemies.js"></script>
 		<script src="script.js"></script>
 		<link href="styles.css" rel="stylesheet">
+
 	</head>
 <body>
-	<h1>Волчья погоня</h1>
+	<h1>Wolf Chase</h1>
 	<div id="info">
 		Size = <span id='id_size'>400</span>, 
 		Ось x = <span id='id_x'>0</span>, 
@@ -17,33 +19,50 @@
 		Таймер = <span id='timer'>0</span>
 	</div>
 	<div id="intro">
-		<h3>Инструкция:</h3>
+		<h3>Правила:</h3>
+		<ul>
+			<li>Нажмите на поле для начала игры</li>
+			<li>На поле появляется ребенок, доступный в поле видимости</li>
+			<li>Догнав его, необходимо хлопнуть по плечу<br> - нажмите на поле при наложении персонажей</li>
+			<li>С каждым "загаленным" человеком вам все больше начинает нравиться эта игра<br> - скорость увеличивается</li>
+			<li>Если вы запнулись или "загалили" пол под ногами, то дети считают,<br> что вас следует заменить - при промахе игра окончена </li>
+			<li>В городе много детей, можно менять окружение на более спортивных<br> - изменять сложность можно прямо во время игры</li>
+			<li>Необходимо догнать всех!</li>
+		</ul>
 	</div>
-	<button class="btn btn-default" id="start" onclick="go()"><font size="40">ИГРАТЬ</font></button>
+	<button type="button" class="btn btn-primary" id="start" onclick="go()"><font size="40">ИГРАТЬ</font></button>
 	<div id="rule">
 		<h3>Предыстория:</h3>
+		<p>Хеллоуин! Наконец-то можно не стесняться своего обличья и поиграть с остальными детьми в салочки. Но вот незадача - водой стал обладатель самого правдоподобного костюма...</p>
 	</div>
 	<h2 id="win_logo" onclick="music_win()"> ПОБЕДА!!! </h2>
 	<div id="wrapper" class="wall">	
 		<h2>Очки: <span id="score">0</span></h2>
 		<div class="back" id="page" onclick="change_way(); play_music()" style="margin: auto;">
 			<div id="player"> 
-				<img src="player.png" id="txt" style="width: 100px; height: 100px;"/>
+				<img src="Pictures/player.png" id="txt" style="width: 100px; height: 100px;"/>
 			</div>
-			<img src="boy.png" id="enemy_1" style="width: 90px; height: 70px;" />
-			<img src="boy2.png" id="enemy_2" style="width: 90px; height: 70px;" />
-			<img src="girl.png" id="enemy_3" style="width: 90px; height: 70px;" />
-			<img src="boy3.png" id="enemy_4" style="width: 90px; height: 70px;" />
-			<img src="girl.png" id="enemy_5" style="width: 90px; height: 70px;" />
-			<img src="girl.png" id="enemy_6" style="width: 90px; height: 70px; margin-top: 400px;"/>
-			<img src="boy2.png" id="enemy_7" style="width: 90px; height: 70px;" />
-			<img src="boy4.png" id="enemy_8" style="width: 90px; height: 70px;" />
-			<img src="girl.png" id="enemy_9" style="width: 90px; height: 70px;" />
-			<img src="boy.png" id="enemy_10" style="width: 90px; height: 70px;" />
+			<img src="Pictures/boy.png" id="enemy_1" style="width: 90px; height: 70px;" />
+			<img src="Pictures/boy2.png" id="enemy_2" style="width: 90px; height: 70px;" />
+			<img src="Pictures/girl.png" id="enemy_3" style="width: 90px; height: 70px;" />
+			<img src="Pictures/boy3.png" id="enemy_4" style="width: 90px; height: 70px;" />
+			<img src="Pictures/girl.png" id="enemy_5" style="width: 90px; height: 70px;" />
+			<img src="Pictures/girl.png" id="enemy_6" style="width: 90px; height: 70px;"/>
+			<img src="Pictures/boy2.png" id="enemy_7" style="width: 90px; height: 70px;" />
+			<img src="Pictures/boy4.png" id="enemy_8" style="width: 90px; height: 70px;" />
+			<img src="Pictures/girl.png" id="enemy_9" style="width: 90px; height: 70px;" />
+			<img src="Pictures/boy.png" id="enemy_10" style="width: 90px; height: 70px;" />
 			<!-- <img src="girl.png" id="enemy_11" style="width: 90px; height: 70px;" /> -->
 			<!-- <img src="girl.png" id="enemy_12" style="width: 90px; height: 70px;" /> -->
 			<!-- <img src="boy.png" id="enemy_13" style="width: 90px; height: 70px;" /> -->
 			<!-- <img src="girl2.png" id="enemy_11" style="width: 150px; height: 110px;" /> -->
+		</div>
+		<div id="chooser">
+			<h2 style="margin-left: 0">Сложность:</h2>
+			<h3><input type="radio" name="level" value="15" onclick="choose_lvl(this.value)">Легко</input></h3>
+			<h3><input type="radio" name="level" value="10" onclick="choose_lvl(this.value)">Средне</input></h3>
+			<h3><input type="radio" name="level" value="3" onclick="choose_lvl(this.value)">Сложно</input></h3>
+			<h3><input type="radio" name="level" value="1" onclick="choose_lvl(this.value)">Ну прям нереально</input></h3>
 		</div>
 	</div>
 	<div id="footer">Сделано by schoolers(школьники, если что)</div>

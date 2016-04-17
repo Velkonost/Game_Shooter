@@ -4,12 +4,46 @@ var puck = true;
 var play = true;
 var score = 0;
 var music_checker = true;
+var enemies = {};
+var difficulty = 10;
 
 $(document).ready(function(){ 
 	var info = document.getElementById('info');
 	var win = document.getElementById('win_logo');
 	var all = document.getElementById('wrapper');
-
+	var choose_lvl = document.getElementById('chooser');
+	var st = document.createElement("link");
+		st.setAttribute("rel","stylesheet");
+	var rand = randomInteger(1, 5);
+	switch(rand){
+		case 1:{
+			enemies = set_1;
+			st.setAttribute("href","Sets_of_styles/style_1.css");
+			break;
+		}
+		case 2:{
+			enemies = set_2;
+			st.setAttribute("href","Sets_of_styles/style_2.css");
+			break;
+		}
+		case 3:{
+			enemies = set_3;
+			st.setAttribute("href","Sets_of_styles/style_3.css");
+			break;
+		}
+		case 4:{
+			enemies = set_4;
+			st.setAttribute("href","Sets_of_styles/style_4.css");
+			break;
+		}
+		default:{
+			enemies = set_5;
+			st.setAttribute("href","Sets_of_styles/style_5.css");
+			break;
+		}
+	}
+	document.body.appendChild(st);
+	choose_lvl.setAttribute('class', 'hidden');
 	all.setAttribute('class', 'hidden');
 	win.setAttribute('class', 'hidden');
 	info.setAttribute('class', 'hidden');
@@ -19,36 +53,44 @@ $(document).ready(function(){
 		enemy.setAttribute('class', 'hidden');
 	}
 });
+function randomInteger(min, max) {
+  var rand = min + Math.random() * (max - min)
+  rand = Math.round(rand);
+  return rand;
+}
+function choose_lvl(value){
+	difficulty = value;
+}
 function go(){
 	var all = document.getElementById('wrapper');
 	var button = document.getElementById('start');
 	var history = document.getElementById('rule');
+	var choose_lvl = document.getElementById('chooser');
+	$('link[title=fu]')[0].disabled=true;
 
 	history.setAttribute('class', 'hidden');
+	choose_lvl.setAttribute('class','');
 	button.setAttribute('class', 'hidden');
 	all.setAttribute('class', '');
 }
 function play_music(){
 	if(!music_checker){
-		$('#music').html('<embed src="eat.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>')
+		$('#music').html('<embed src="Music/eat.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>');
 	}
 	else{
-		$('#music').html('<embed src="pig.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>')	
+		$('#music').html('<embed src="Music/pig.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>');	
 	}
 	music_checker = false;
 }
 function music_win(){
-	$('#music').html('<embed src="minions-banana.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>')
+	$('#music').html('<embed src="Music/minions-banana.mp3" type="audio/mp3"><noembed><bgsound="music.mp3"></noembed>');
 }
 function clock(){
 	var idt = document.getElementById('timer'); 
 	idt.innerHTML = parseInt(idt.innerHTML) + 0.02; 
-	// Текст который движется 
 	var txt = document.getElementById('txt'); 
-	// Размер квадрата 
 	var ids = document.getElementById('id_size'); 
 	var size = parseInt(ids.innerHTML); 
-	// Координаты 
 	var idx = document.getElementById('id_x'); 
 	var x = parseInt(idx.innerHTML); 
 	var idy = document.getElementById('id_y'); 
@@ -161,7 +203,7 @@ function change_way(checker){
 						clock();
 					}
 				// }
-			}, 10);
+			}, difficulty);
 			puck = !puck;
 			num ++;
 			var id = "enemy_"+num;
@@ -185,17 +227,7 @@ function change_way(checker){
 		}
 	}
 }
-var enemies = { 
-	// min_x, max_x, min_y, max_y
-	0: [0,0,0,0],
-	1: [310, 400, 0, 70],
-	2: [0, 90, 0, 70],
-	3: [310, 400, 90, 180],
-	4: [0, 100, 0, 80],
-	5: [0, 100, 0, 80],
-	6: [0, 100, 320, 400],
-	7: [310, 400, 320, 400],
-	8: [230, 350, 0, 80],
-	9: [90, 200, 300, 400],
-	10:[0, 90, 0, 70]
-}
+// var enemies = { 
+// 	// min_x, max_x, min_y, max_y
+	
+// }
