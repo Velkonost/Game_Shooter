@@ -8,8 +8,11 @@ h2{
 h3{
 	margin-top: 50px;
 }
-#mucic{
+#music{
 	display:none;
+}
+li{
+	margin-top: 5px;
 }
 #footer{
 	clear:both;
@@ -17,7 +20,7 @@ h3{
 	text-align:right;
 }
 #start{
-	margin-left: 170px;
+	margin-left: 110px;
 	margin-top: 50px;
 	width: 400px;
 	height: 200px;
@@ -31,7 +34,6 @@ h3{
 #rule{
 	float: left;
 	width: 600px;
-	/* display: inline-block; */
 	margin-left: 200px;
 }
 #chooser{
@@ -40,12 +42,13 @@ h3{
 	margin-top: -500px;
 	margin-right: 250px;
 	text-align: left;
-	/* position: absolute; */
 }
 .back{
 	background:url('Pictures/pole.jpg');
 	width: 500px;
 	height: 500px;
+	border-radius: 10px;
+	border: 3px solid #000;
 }
 .over{
 	background:url('Pictures/game_over.jpg');
@@ -63,4 +66,9 @@ h3{
 }
 .hidden{
 	display:none;
+}
+*{
+	 -webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }

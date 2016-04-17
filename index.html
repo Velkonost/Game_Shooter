@@ -1,4 +1,4 @@
-<html>
+<html onkeydown="key(event.keyCode);">
 	<head>
 		<title>Game for Ludum</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -23,10 +23,10 @@
 		<ul>
 			<li>Нажмите на поле для начала игры</li>
 			<li>На поле появляется ребенок, доступный в поле видимости</li>
-			<li>Догнав его, необходимо хлопнуть по плечу<br> - нажмите на поле при наложении персонажей</li>
-			<li>С каждым "загаленным" человеком вам все больше начинает нравиться эта игра<br> - скорость увеличивается</li>
-			<li>Если вы запнулись или "загалили" пол под ногами, то дети считают,<br> что вас следует заменить - при промахе игра окончена </li>
-			<li>В городе много детей, можно менять окружение на более спортивных<br> - изменять сложность можно прямо во время игры</li>
+			<li>Догнав его, необходимо хлопнуть по плечу - нажмите на поле, пробел или ентер при наложении персонажей</li>
+			<li>С каждым "загаленным" человеком вам все больше начинает нравиться эта игра - скорость увеличивается</li>
+			<li>Если вы запнулись или "загалили" пол под ногами, то дети считают, что вас следует заменить - при промахе игра окончена </li>
+			<li>В городе много детей, можно менять окружение на более спортивных - изменять сложность можно прямо во время игры</li>
 			<li>Необходимо догнать всех!</li>
 		</ul>
 	</div>
@@ -59,10 +59,10 @@
 		</div>
 		<div id="chooser">
 			<h2 style="margin-left: 0">Сложность:</h2>
-			<h3><input type="radio" name="level" value="15" onclick="choose_lvl(this.value)">Легко</input></h3>
-			<h3><input type="radio" name="level" value="10" onclick="choose_lvl(this.value)">Средне</input></h3>
-			<h3><input type="radio" name="level" value="3" onclick="choose_lvl(this.value)">Сложно</input></h3>
-			<h3><input type="radio" name="level" value="1" onclick="choose_lvl(this.value)">Ну прям нереально</input></h3>
+			<h3><label><input type="radio" name="level" value="15" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Легко</input></label></h3>
+			<h3><label><input type="radio" name="level" value="10" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Средне</input></label></h3>
+			<h3><label><input type="radio" name="level" value="3" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Сложно</input></label></h3>
+			<h3><label><input type="radio" name="level" value="1" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Ну прям нереально</input></label></h3>
 		</div>
 	</div>
 	<div id="footer">Сделано by schoolers(школьники, если что)</div>

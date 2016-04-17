@@ -53,6 +53,13 @@ $(document).ready(function(){
 		enemy.setAttribute('class', 'hidden');
 	}
 });
+function key(value){
+	var radio = document.getElementById('chooser');
+	console.log(radio[0]);
+	if((value == 32 || value == 13)&& !play){
+		change_way(); play_music();
+	}
+}
 function randomInteger(min, max) {
   var rand = min + Math.random() * (max - min)
   rand = Math.round(rand);
