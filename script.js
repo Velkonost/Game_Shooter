@@ -6,6 +6,7 @@ var score = 0;
 var music_checker = true;
 var enemies = {};
 var difficulty = 10;
+var change_color = true;
 
 $(document).ready(function(){ 
 	var info = document.getElementById('info');
@@ -54,8 +55,6 @@ $(document).ready(function(){
 	}
 });
 function key(value){
-	var radio = document.getElementById('chooser');
-	console.log(radio[0]);
 	if((value == 32 || value == 13)&& !play){
 		change_way(); play_music();
 	}
@@ -79,6 +78,22 @@ function go(){
 	choose_lvl.setAttribute('class','');
 	button.setAttribute('class', 'hidden');
 	all.setAttribute('class', '');
+}
+function fon_rand(){
+	var color = randomInteger(1, 3);
+	var html = document.getElementById('html');
+	if(change_color){
+		if(color == 2){
+			html.setAttribute('class', 'fon2');
+		}
+		else if(color == 3){
+			html.setAttribute('class', 'fon3');	
+		}
+		else{
+			html.setAttribute('class', 'fon1');		
+		}
+		change_color = !change_color;
+	}
 }
 function play_music(){
 	if(!music_checker){
@@ -190,7 +205,13 @@ function change_way(checker){
 					var game = document.getElementById('page');
 					var player = document.getElementById('player');
 					var win = document.getElementById('win_logo');
+					var intro = document.getElementById('intro');
+					var chooser = document.getElementById('chooser');
+					var html = document.getElementById('html');
 
+					html.setAttribute('class', '');
+					chooser.setAttribute('class', 'hidden');
+					intro.setAttribute('class', 'hidden');
 					game.setAttribute('class', 'win');
 					player.setAttribute('class', 'hidden');
 					win.setAttribute('class', '');
@@ -225,6 +246,9 @@ function change_way(checker){
 	else{
 		var game = document.getElementById('page');
 		var player = document.getElementById('player');
+		var html = document.getElementById('html');
+
+		html.setAttribute('class', '');
 		game.setAttribute('class', 'over');
 		player.setAttribute('class', 'hidden');
 		for(var i = 1; i <= 11; i++){
