@@ -198,7 +198,7 @@ function change_way(checker){
 	if((x >= enemies[num][0] && x <= enemies[num][1] && y >= enemies[num][2] && y <= enemies[num][3]) || play){
 			play = false;
 			var result = document.getElementById('score');
-			result.innerHTML = score;
+			result.innerHTML = score+"/10";
 			score ++;
 			var id = setInterval(function(){ 
 				if(num > 10){

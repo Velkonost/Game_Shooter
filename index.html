@@ -37,7 +37,7 @@
 	</div>
 	<h2 id="win_logo" onclick="music_win()"> ПОБЕДА!!! </h2>
 	<div id="wrapper" class="wall">	
-		<h2>Очки: <span id="score">0</span></h2>
+		<h2>Поймано: <span id="score">0</span></h2>
 		<div class="back" id="page" onclick="change_way(); play_music()" style="margin: auto;">
 			<div id="player"> 
 				<img src="Pictures/player.png" id="txt" style="width: 100px; height: 100px;"/>
@@ -60,7 +60,7 @@
 		<div id="chooser">
 			<h2 style="margin-left: 0">Сложность:</h2>
 			<h3><label><input type="radio" name="level" value="15" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Легко</input></label></h3>
-			<h3><label><input type="radio" name="level" value="10" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Средне</input></label></h3>
+			<h3><label><input type="radio" name="level" value="10" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)" checked="checked">Средне</input></label></h3>
 			<h3><label><input type="radio" name="level" value="3" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Сложно</input></label></h3>
 			<h3><label><input type="radio" name="level" value="1" onchange="choose_lvl(this.value)" onclick="choose_lvl(this.value)">Ну прям нереально</input></label></h3>
 		</div>
